@@ -5,9 +5,7 @@ const axios = require('axios')
 const app = express()
 app.use(bodyParser.json())
 
-app.post('/event', (req, res) => {
-  const { type, data } = req.body
-
+const handleEvent = (type, data) => {
   if (type == "CommentCreated") {
     if (data.content.includes('orange')) {
       data.status = 'rejected'
@@ -20,10 +18,23 @@ app.post('/event', (req, res) => {
       'data': data
     })
   }
+}
 
+app.post('/event', (req, res) => {
+  const { type, data } = req.body
+  handleEvent(type, data)
   res.send({})
 })
 
+const loadEventsFromEventBus = async () => {
+  const events = await axios.get('http://139.59.71.106:4005/allEvents')
+  events.forEach(event => {
+    const { type, data } = event
+    handleEvent(type, data)
+  })
+}
+
 app.listen(4003, () => {
+  loadEventsFromEventBus()
   console.log('Listening to 4003')
 })
