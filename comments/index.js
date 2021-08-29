@@ -22,7 +22,7 @@ app.post('/posts/:id/comments', (req, res) => {
   })
   commentsByPostId[req.params.id] = oldComments
 
-  axios.post('http://localhost:4005/emit', {
+  axios.post('http://139.59.71.106:4005/emit', {
     'type': 'CommentCreated',
     'data': {
       id, content, postId: req.params.id, status: 'pending'
@@ -42,7 +42,7 @@ app.post('/event', (req, res) => {
 
     comment.status = data.status
 
-    axios.post('http://localhost:4005/emit', {
+    axios.post('http://139.59.71.106:4005/emit', {
       'type': 'CommentUpdated',
       'data': data
     })

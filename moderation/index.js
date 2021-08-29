@@ -15,7 +15,7 @@ app.post('/event', (req, res) => {
       data.status = 'approved'
     }
 
-    axios.post('http://localhost:4005/emit', {
+    axios.post('http://139.59.71.106:4005/emit', {
       'type': 'CommentModerated',
       'data': data
     })

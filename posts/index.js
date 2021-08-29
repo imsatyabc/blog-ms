@@ -22,7 +22,7 @@ app.post('/posts', (req, res) => {
     id, title
   }
 
-  axios.post('http://localhost:4005/emit', {
+  axios.post('http://139.59.71.106:4005/emit', {
     'type': 'PostCreated',
     'data': {
       id, title

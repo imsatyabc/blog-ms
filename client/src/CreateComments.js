@@ -7,7 +7,7 @@ const CreateComments = ({ post }) => {
   const submitForm = async (e) => {
     e.preventDefault();
 
-    await axios.post(`http://localhost:4001/posts/${post}/comments`, {
+    await axios.post(`http://139.59.71.106:4001/posts/${post}/comments`, {
       content
     })
 
