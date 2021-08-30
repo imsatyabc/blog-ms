@@ -47,7 +47,7 @@ app.post('/event', (req, res) => {
 
 const loadEventsFromEventBus = async () => {
   const events = await axios.get('http://139.59.71.106:4005/allEvents')
-  events.body.forEach(event => {
+  events.data.forEach(event => {
     const { type, data } = event
     handleEvent(type, data)
   })
